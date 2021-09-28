@@ -58,16 +58,24 @@ class Auth extends CI_Controller
 
         if ($user) {
             if ($password == $user['password']) {
-
-                echo "ada disini";
-                die;
+                $this->session->set_userdata('role', '4dmin');
+                redirect('4dmin/admin');
             } else {
-                echo "tidak ada disini";
-                die;
+                $this->session->set_flashdata('flash', 'Password Salah');
+                $this->session->set_flashdata('color', 'danger');
+                redirect('4dmin/');
             }
         } else {
-            echo "tidak ada admin disini";
-            die;
+            $this->session->set_flashdata('flash', 'User Tidak Detemukan');
+            $this->session->set_flashdata('color', 'danger');
+            redirect('4dmin/');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('role');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You Have been logged out </div>');
+        redirect('4dmin/');
     }
 }

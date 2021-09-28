@@ -45,27 +45,35 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <h5 class="font-weight-bold text-center">Top Up </h5>
+
+                                <h5 class="font-weight-bold text-center"><?= $detail["kategori"] ?></h5>
                                 <div class="info__transaksi mt-4 mb-5">
                                     <table class="table table-borderless">
                                         <tr>
                                             <td>ID</td>
-                                            <td class="text-right text-secondary">123490213091309</td>
+                                            <td class="text-right text-secondary"><?= $detail["id_transaksi"] ?></td>
                                         </tr>
                                         <tr>
                                             <td>Status</td>
-                                            <td class="text-right text-success">Sukses</td>
+                                            <td class="text-right text-success"><?= $detail["status"] ?></td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal</td>
-                                            <td class="text-right">Oct 10, 2021 10:00 AM</td>
+                                            <td class="text-right">
+                                                <?= date("M, d Y H:iA", strtotime($detail["tanggal"])); ?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Jumlah</td>
                                             <td class="text-right">
                                                 <img src="assets/img/kepeng-01.png" alt="" height="25">
-                                                <span class="text-success">+50 KPG</span>
+                                                <?php if ($detail["kategori"] == "Top Up") { ?>
+                                                    <span class="text-success">+<?= $detail["jumlah"] . " KPG" ?></span>
+                                                <?php } else { ?>
+                                                    <span class="text-danger">-<?= $detail["jumlah"] . " KPG" ?></span>
+                                                <?php } ?>
                                             </td>
+
                                         </tr>
                                         <tr>
                                             <td>Kategori</td>

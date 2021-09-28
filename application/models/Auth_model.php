@@ -46,26 +46,33 @@ class Auth_model extends CI_Model
         if ($response_status == 200) {
             $data =
                 [
-                    "name"        => $this->input->post('name',  TRUE),
-                    "cell"        => $phone,
-                    "email"       => $this->input->post('email', TRUE),
-                    "password"    => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
-                    "user_type"   => "visitor",
-                    "born"        => $this->input->post('date',  TRUE),
-                    "gender"      => $this->input->post('sex',   TRUE),
-                    "category"    => $this->input->post('type',   TRUE),
-                    "photo"       => $datagambar["img"],
-                    "otp"         => $otp,
-                    "user_pin"    => "",
-                    "kode_qr"     => $kode_qr,
-                    "is_active"   => 0,
+                    "customer_gelang" => $kode_qr,
+                    "customer_name" => $this->input->post('name',  TRUE),
+                    "customer_password"    => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
+                    "customer_gender"      => $this->input->post('sex',   TRUE),
+                    "customer_otp"         => $otp,
+                    "customer_user_pin"    => "",
+                    "customer_born"        => $this->input->post('date',  TRUE),
+                    "customer_category"    => $this->input->post('type',   TRUE),
+                    "customer_cell"        => $phone,
+                    "customer_email"       => $this->input->post('email', TRUE),
+                    "customer_saldo"       => 0,
+                    "customer_status"      => "OUT",
+                    "customer_address"     => "Indonesia",
+                    "kode_qr"              => $kode_qr,
+                    "is_active"            => 0,
+                    "photo_id"             => $datagambar["img"],
+                    "photo_profile"        => "",
                 ];
+
+            // var_dump($data);
+            // die;
 
             date_default_timezone_set('Asia/Makassar');
             $startTime = date("Y-m-d H:i:s");
             $cenvertedTime = date('M d, Y H:i:s', strtotime('+5 minutes', strtotime($startTime)));
 
-            $this->db->insert('users', $data);
+            $this->db->insert('customers', $data);
             $insert_id = $this->db->insert_id();
 
             $sementara = [
@@ -93,14 +100,19 @@ class Auth_model extends CI_Model
         $otp = $this->input->post('satu', TRUE);
         $unity = implode("", $otp);
         // var_dump($id);
-        // $unity = 1601;
+        // $unity = 1600;
+
         $this->db->select('*');
-        $this->db->from('users');
-        $this->db->where('id', $id);
-        $this->db->where('otp', $unity);
+        $this->db->from('customers');
+        $this->db->where('customer_id', $id);
+        $this->db->where('customer_otp', $unity);
         $result = $this->db->get()->row_array();
+
+        // var_dump($result);
+        // die;
+
         $data_user = [
-            "user" => $result["name"],
+            "user" => $result["customer_name"],
         ];
 
         // var_dump($id);
@@ -112,8 +124,8 @@ class Auth_model extends CI_Model
                     "is_active"         => 1,
                 ];
 
-            $this->db->where('id', $id);
-            $this->db->update('users', $data);
+            $this->db->where('customer_id', $id);
+            $this->db->update('customers', $data);
             return 1;
         } else {
             return 0;
@@ -127,25 +139,25 @@ class Auth_model extends CI_Model
     public function resendOtp($id)
     {
 
-        $data_user = $this->db->get_where('users', ['id' => $id])->row_array();
-        $telpon_user = $data_user["cell"];
+        $data_user = $this->db->get_where('customers', ['customer_id' => $id])->row_array();
+        $telpon_user = $data_user["customer_cell"];
         $convert = $this->hp($telpon_user);
         $otp   = rand(1000, 2000);
         $status = $this->sendMessage($convert, $otp);
         $status = json_decode($status);
 
-        // var_dump($status);
+        // var_dump($data_user);
         // die;
 
         if ($status->code == 200) {
 
             $data =
                 [
-                    "otp"         => $otp,
+                    "customer_otp"         => $otp,
                 ];
 
-            $this->db->where('id', $id);
-            $this->db->update('users', $data);
+            $this->db->where('customer_id', $id);
+            $this->db->update('customers', $data);
 
             date_default_timezone_set('Asia/Makassar');
             $startTime = date("Y-m-d H:i:s");
@@ -216,6 +228,8 @@ class Auth_model extends CI_Model
             ),
         ));
 
+
+
         $response = curl_exec($curl);
 
         curl_close($curl);
@@ -227,13 +241,13 @@ class Auth_model extends CI_Model
     function qr($kodeqr)
     {
         if ($kodeqr) {
-            $filename = 'qr/' . $kodeqr;
+            $filename = 'qr/user/' . $kodeqr;
             if (!file_exists($filename)) {
                 $this->load->library('ciqrcode');
                 $params['data'] = $kodeqr;
                 $params['level'] = 'H';
                 $params['size'] = 10;
-                $params['savename'] = FCPATH . 'qr/' . $kodeqr . ".png";
+                $params['savename'] = FCPATH . 'qr/user/' . $kodeqr . ".png";
                 return  $this->ciqrcode->generate($params);
             }
         }

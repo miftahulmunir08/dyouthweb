@@ -62,6 +62,17 @@
                     <div class="col-11">
                         <div class="mt-5 text-center">
 
+                            <?php
+                            if ($this->session->flashdata('flash')) :
+                            ?>
+
+                                <div class="alert alert-<?= $this->session->flashdata('color'); ?> alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <?= $this->session->flashdata('flash'); ?><strong> </strong>
+                                </div>
+
+                            <?php endif; ?>
+
                         </div>
                         <div class="card custome__card__content mt-5 mb-5">
                             <div class="card-body">
@@ -78,6 +89,7 @@
                                                 <option value="barber shop">Barber Shop</option>
                                                 <option value="coffe shop">Coffe Shop</option>
                                                 <option value="studio music">Studio Music</option>
+                                                <option value="butik">Butik</option>
                                             </select>
                                         </div>
 

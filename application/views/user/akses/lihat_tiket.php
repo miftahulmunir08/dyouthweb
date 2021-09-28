@@ -21,19 +21,19 @@
                                 <?php if ($ticket == NULL) { ?>
                                     <p><?php
                                         $var = explode(".", $this->session->userdata('barcode_tiket'));
-                                        echo "ET-" . $var[0]  ?></p>
+                                        echo  $var[0]  ?></p>
                                 <?php } else { ?>
                                     <p><?php
                                         $var = explode(".", $ticket['barcode']);
-                                        echo "ET-" . $var[0]  ?></p>
+                                        echo $var[0]  ?></p>
                                     </p>
                                 <?php } ?>
 
 
                                 <?php if ($ticket == NULL) { ?>
-                                    <img src="<?= base_url() ?>qr/ticket/<?= "ET-" . $this->session->userdata('barcode_tiket'); ?>" class="rounded mt-4">
+                                    <img src="<?= base_url() ?>qr/ticket/<?= $this->session->userdata('barcode_tiket'); ?>" class="rounded mt-4">
                                 <?php } else { ?>
-                                    <img src="<?= base_url() ?>qr/ticket/<?= "ET-" . $ticket['barcode']; ?>" class="rounded mt-4">
+                                    <img src="<?= base_url() ?>qr/ticket/<?= $ticket['barcode']; ?>" class="rounded mt-4">
                                 <?php } ?>
                                 <!-- <p>YF-202110150001DMADE</p> -->
 

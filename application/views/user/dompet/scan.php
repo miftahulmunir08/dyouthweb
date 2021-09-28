@@ -1,22 +1,16 @@
-<html>
-
-<head>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function() {
-            $("#state").on("input", function() {
-                var id = $(this).val();
-
-
-            });
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $("#state").on("input", function() {
+            var id = $(this).val();
         });
-    </script>
+    });
+</script>
 
-</head>
 
 <body>
     <form action="" method="post" enctype="multipart/form-data">
@@ -69,8 +63,8 @@
                     //     alert('No data');
                     // }
                     if (data.name != null) {
-                        alert("You will now be redirected.");
-                        window.location = "//" + BASE_URL('Dompet/detail/?id='.data.name) + "/";
+                        alert(data.name);
+                        // window.location = "//" + BASE_URL('Dompet/detail/?id='.data.name) + "/";
 
                     }
                 },

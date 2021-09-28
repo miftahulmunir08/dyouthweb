@@ -9,6 +9,18 @@
 
 
 <script type="text/javascript">
+    // alert("<?= $cenvertedTime ?>");
+
+    function clickEvent(first, last) {
+
+        if (first.value.length) {
+            document.getElementById(last).focus();
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
     $(document).ready(function() {
         $("#sidebar").mCustomScrollbar({
             theme: "minimal"
@@ -47,7 +59,37 @@
     });
 </script>
 
+<script>
+    // document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
 
+<script>
+    $(document).keydown(function(e) {
+
+        if (e.which === 123) {
+
+            return false;
+        }
+        if (e.which == 17 && e.which == 67) {
+
+            return false;
+        }
+
+        if (e.which == 17 && e.which == 85) {
+
+            return false;
+        }
+
+        if (e.which == 17 && e.which == 86) {
+
+            return false;
+        }
+        if (e.which == 115) {
+
+            return false;
+        }
+    });
+</script>
 
 
 

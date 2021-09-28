@@ -36,7 +36,7 @@
                                             <div class="title__banner mb-5">
                                                 <h5 class="event__title mb-4">#DOORPRIZEDYOUTH</h5>
                                                 <span class="font__vsm">Tukar nota belanjamu di Distro, Coffee Shop,
-                                                    Barbershop di Kota Denpasar. Menangkan hadiah menari berupa 100 baju
+                                                    Barbershop,Musik Studio, dan Butik di Kota Denpasar. Menangkan hadiah menari berupa 100 baju
                                                     distro,
                                                     100 buah celana dan lainnya!</span>
                                             </div>

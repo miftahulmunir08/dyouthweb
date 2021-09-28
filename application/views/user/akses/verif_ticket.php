@@ -1,10 +1,34 @@
+<style>
+    .button {
+        background-color: #008cba;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .button:disabled {
+        opacity: 0.5;
+    }
+
+    .hide {
+        display: none;
+    }
+</style>
+
 <body class="bg__img">
     <div class="wrapper">
 
         <!-- Page Content  -->
         <div id="content">
 
-          
+
 
 
             <div class="content bg-light">
@@ -41,47 +65,56 @@
                                 <p class="mb-4 text-center">Silakan masukan password Anda untuk verifikasi pesanan Anda
                                 </p>
                                 <div>
-                                    <form action="<?= base_url('Akses/Verif_Entrance') ?>" autocomplete="off" method="post">
 
-                                        <div class="input-group sign__group">
+                                    <?php
+                                    if ($this->session->flashdata('flash')) :
+                                    ?>
 
-                                            <div class="input-group" id="show_hide_password">
-                                                <input type="password" class="form-control sign__password_hide" id="myInput" name="password" placeholder="Password">
-                                                <?= form_error('password', '<small class="text-danger">',  '</small>') ?>
-                                                <div class="input-group-addon">
-                                                    <div class="password-group-text_hide icon-password_hide">
-                                                        <a><i class="fa fa-eye-slash" aria-hidden="true" onclick="myFunction()"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="alert alert-<?= $this->session->flashdata('color'); ?> alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <?= $this->session->flashdata('flash'); ?><strong> </strong>
                                         </div>
 
-                                </div>
-                                <hr>
-                                <button type="submit" class="btn__blue_gradient_small d-block btn-block">Lanjutkan</a>
+                                    <?php endif; ?>
+
+                                    <form id="form" action="<?= base_url('Akses/Verif_Entrance') ?>" method="post" autocomplete="off">
+                                        <div class="d-flex mb-4 mt-3">
+                                            <input type="tel" maxlength="1" pattern="[0-9]" class="form__verify_pin" id="ist" name="kode[]" onkeyup="clickEvent(this,'sec')" auto-complete="one-time-code">
+                                            <input type="tel" maxlength="1" pattern="[0-9]" class="form__verify_pin" id="sec" name="kode[]" onkeyup="clickEvent(this,'third')" auto-complete="one-time-code">
+                                            <input type="tel" maxlength="1" pattern="[0-9]" class="form__verify_pin" id="third" name="kode[]" onkeyup="clickEvent(this,'fourth')" auto-complete="one-time-code">
+                                            <input type="tel" maxlength="1" pattern="[0-9]" class="form__verify_pin" id="fourth" name="kode[]" onkeyup="clickEvent(this,'five')" auto-complete="one-time-code">
+                                            <input type="tel" maxlength="1" pattern="[0-9]" class="form__verify_pin" id="five" name="kode[]" onkeyup="clickEvent(this,'six')" auto-complete="one-time-code">
+                                            <input type="tel" maxlength="1" pattern="[0-9]" class="form__verify_pin" id="six" name="kode[]" onkeyup="clickEvent(this,'seven')" auto-complete="one-time-code">
+                                        </div>
+
+                                        <?= form_error('kode[]', '<small class="text-danger text-danger">',  '</small>') ?>
+
+                                        <button type="submit" id="sendlogin" class="button btn__login d-block btn-block"><i class="loading-icon fa fa-spinner fa-spin hide"></i>
+                                            <span class="btn-txt">Lanjutkan</span></button>
                                     </form>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="overlay"></div>
+        <div class="overlay"></div>
 
 
-    <script>
-        function myFunction() {
-            // $(this).removeClass('fa fa-eye-slash');
-            $(this).toggleClass('myclass');
-            $(this).toggleClass('showhidenew');
-            var x = document.getElementById("myInput");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
+        <script>
+            function myFunction() {
+                // $(this).removeClass('fa fa-eye-slash');
+                $(this).toggleClass('myclass');
+                $(this).toggleClass('showhidenew');
+                var x = document.getElementById("myInput");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
             }
-        }
-    </script>
+        </script>
 </body>

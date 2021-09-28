@@ -23,6 +23,7 @@ class Auth extends CI_Controller
         $data['title'] = "D'Youth Fest";
         $this->load->view('templates/headerauth', $data);
         $this->load->view('templates/sidebar2');
+        $this->load->view('templates/floatingbutton');
         $this->load->view('auth/index', $data);
         $this->load->view('templates/footer');
     }
@@ -56,24 +57,41 @@ class Auth extends CI_Controller
         // die;
         $username = $this->input->post("email");
         $password = $this->input->post("password");
-        $user = $this->db->get_where('users', ['email' => $username])->row_array();
+        $user = $this->db->get_where('customers', ['customer_email' => $username])->row_array();
 
         // var_dump($user);
         // die;
 
         if ($user) {
 
-            if (password_verify($password, $user['password'])) {
+            if (password_verify($password, $user['customer_password'])) {
 
 
                 if ($user['is_active'] == 0) {
+                    $data = [
+                        'name' => $user['customer_name'],
+                        'id' => $user['customer_id'],
+                    ];
+
+                    $this->session->set_userdata($data);
+
                     $this->resend();
                     redirect('Auth/otp');
                 } else {
 
+                    if ($user['customer_user_pin'] == "") {
+                        $data = [
+                            'name' => $user['customer_name'],
+                            'id' => $user['customer_id'],
+                        ];
+
+                        $this->session->set_userdata($data);
+                        redirect('Auth/setting_pin');
+                    }
+
                     $data = [
-                        'name' => $user['name'],
-                        'id' => $user['id'],
+                        'name' => $user['customer_name'],
+                        'id' => $user['customer_id'],
                     ];
 
                     $this->session->set_userdata($data);
@@ -100,7 +118,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('phone', 'telepon', 'required');
         $this->form_validation->set_rules('sex', 'Gender', 'required');
         $this->form_validation->set_rules('type', 'Type', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[customers.customer_email]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 
         $date = $this->input->post('date');
@@ -178,9 +196,8 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('satu[]', 'OTP', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/headerauth', $data);
+            $this->load->view('templates/header', $data);
             $this->load->view('auth/otp', $data);
-            $this->load->view('templates/footer');
             $this->load->view('templates/footerauth');
         } else {
             $result = $this->Auth_model->verifOtp();
@@ -247,9 +264,9 @@ class Auth extends CI_Controller
 
                 $id = $this->session->userdata('id');
 
-                $this->db->set('user_pin', $kode2);
-                $this->db->where('id', $id);
-                $this->db->update('users');
+                $this->db->set('customer_user_pin', $kode2);
+                $this->db->where('customer_id', $id);
+                $this->db->update('customers');
 
                 redirect('auth/setting_pinok');
             } else {
@@ -285,7 +302,7 @@ class Auth extends CI_Controller
     public function file_check()
     {
 
-        $tipe = array('jpg', 'png');
+        $tipe = array('jpg', 'png', 'jpeg',);
         $namafile = $_FILES['img']['name'];
         $tipegambar = explode('.', $namafile);
         $ukuran = $_FILES['img']['size'];

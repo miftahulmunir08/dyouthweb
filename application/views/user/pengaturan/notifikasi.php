@@ -35,12 +35,12 @@
 
                             <div class="setting__list">
 
-                                <?php foreach ($data_lomba as $lomba) : ?>
+                                <?php foreach ($data_notifikasi as $notifikasi) : ?>
 
 
                                     <div class="card__list">
-                                        <a href="<?= BASE_URL('lomba/detailomba/' . $lomba["id_lomba"]); ?>" class="d-block">
-                                            <span class="setting__list_name"><?= $lomba["acara"] ?></span>
+                                        <a href="<?= BASE_URL('pengaturan/detailnotifikasi/' . $notifikasi["id_notifikasi"]); ?>" class="d-block">
+                                            <span class="setting__list_name"><?= $notifikasi["judul"] ?></span>
                                             <span class="float-right">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />

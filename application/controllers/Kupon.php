@@ -86,10 +86,20 @@ class Kupon extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = "kupon";
             $data['kodekupon'] = $this->User->autokode();
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/headerauth', $data);
             $this->load->view('user/kupon/joinkupon', $data);
             $this->load->view('templates/footer');
         } else {
+
+
+            $nominal = $this->input->post('nominal');
+
+            if ((int)$nominal < 15000) {
+                $this->session->set_flashdata('flash', 'Kupon Kurang dari nominal yang telah ditentukan');
+                $this->session->set_flashdata('color', 'danger');
+                redirect('Kupon/joinkupon');
+            }
+
 
             $gambar     = $_FILES["img"];
             $namagambar = $gambar["name"];

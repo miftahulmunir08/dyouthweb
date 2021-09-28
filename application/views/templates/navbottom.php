@@ -73,21 +73,31 @@
     </div>
     <div class="menu__navbar_bottom_center">
         <div class="menu__navbar_bottom">
-            <a href="<?= base_url('coming_soon') ?>" class="middle__menu_navbar">
-                <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2.25 10.125V7.3125C2.25 4.51125 4.51125 2.25 7.3125 2.25H10.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16.875 2.25H19.6875C22.4887 2.25 24.75 4.51125 24.75 7.3125V10.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M24.75 18V19.6875C24.75 22.4888 22.4887 24.75 19.6875 24.75H18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M10.125 24.75H7.3125C4.51125 24.75 2.25 22.4888 2.25 19.6875V16.875" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M19.125 10.6875V16.3125C19.125 18.5625 18 19.6875 15.75 19.6875H11.25C9 19.6875 7.875 18.5625 7.875 16.3125V10.6875C7.875 8.4375 9 7.3125 11.25 7.3125H15.75C18 7.3125 19.125 8.4375 19.125 10.6875Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M21.375 13.5H5.625" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </a>
+            <?php
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "com.kepeng.youthfest") { ?>
+                <a href="https://dyouthfest.kepeng.io/scan" class="middle__menu_navbar">
+                <?php
+
+            } else { ?>
+                    <a href="scan" class="middle__menu_navbar">
+                    <?php
+                }
+                    ?>
+                    <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.25 10.125V7.3125C2.25 4.51125 4.51125 2.25 7.3125 2.25H10.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M16.875 2.25H19.6875C22.4887 2.25 24.75 4.51125 24.75 7.3125V10.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M24.75 18V19.6875C24.75 22.4888 22.4887 24.75 19.6875 24.75H18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M10.125 24.75H7.3125C4.51125 24.75 2.25 22.4888 2.25 19.6875V16.875" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M19.125 10.6875V16.3125C19.125 18.5625 18 19.6875 15.75 19.6875H11.25C9 19.6875 7.875 18.5625 7.875 16.3125V10.6875C7.875 8.4375 9 7.3125 11.25 7.3125H15.75C18 7.3125 19.125 8.4375 19.125 10.6875Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M21.375 13.5H5.625" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    </a>
         </div>
     </div>
     <div class="menu__navbar_bottom_right">
         <div class="menu__navbar_bottom <?php if ($this->uri->segment(1) == 'dompet') : echo 'active';
                                         endif; ?>">
+
             <a href="<?= base_url('dompet') ?>" class="side__menu_navbar">
                 <svg width="20" height="20" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.02 6.77506C8.81 6.98006 8.69 7.27506 8.72 7.59006C8.765 8.13006 9.26 8.52506 9.8 8.52506H10.75V9.12006C10.75 10.1551 9.905 11.0001 8.87 11.0001H3.13C2.095 11.0001 1.25 10.1551 1.25 9.12006V5.75507C1.25 4.72007 2.095 3.87506 3.13 3.87506H8.87C9.905 3.87506 10.75 4.72007 10.75 5.75507V6.47507H9.74C9.46 6.47507 9.205 6.58506 9.02 6.77506Z" stroke="<?php if ($this->uri->segment(1) == 'dompet') {

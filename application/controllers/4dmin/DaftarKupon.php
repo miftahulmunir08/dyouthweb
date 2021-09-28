@@ -10,6 +10,11 @@ class DaftarKupon extends CI_Controller
         parent::__construct();
         $this->load->model('Kupon_model', "kupon");
         $this->load->library('form_validation');
+        $role = $this->session->userdata("role");
+
+        if ($role == NULL) {
+            redirect('4dmin/');
+        }
     }
 
     public function index()

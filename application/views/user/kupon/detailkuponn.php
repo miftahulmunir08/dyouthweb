@@ -53,12 +53,14 @@
                                         </tr>
                                         <tr>
                                             <td>Jumlah</td>
-                                            <td class="text-right"><?= $detail_kupon["jumlah"] ?></td>
+                                            <td class="text-right"><?= $detail_kupon["jumlah"] ?>&nbsp;<i class="fa fa-search" data-toggle="modal" data-target="#exampleModal"></i></td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal</td>
                                             <td class="text-right">
-                                                <?= date("M, d Y H:iA", strtotime($detail_kupon["tanggal"])) ?>
+                                                <?= date("M, d Y H:iA", strtotime($detail_kupon["tanggal"]));
+                                                $foto = $detail_kupon["foto"]
+                                                ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -68,6 +70,7 @@
                                     </table>
                                 </div>
                                 <a href="<?= base_url('Kupon') ?>" class="btn__blue_gradient_small d-block">Kembali</a>
+
                             </div>
                         </div>
                     </div>
@@ -78,55 +81,28 @@
 
     <div class="overlay"></div>
 
-    <div class="card notifications__card" id="box_notif">
-        <div class="card-body">
-            <h6>Notifikasi</h6>
-            <div class="notif__list">
-                <img src="assets/img/profile/profile.png" class="rounded float-left">
-                <div>
-                    <span class="title__name">
-                        Youth Festival 2021
-                        <b class="float-right time__notif">5 jam yang lalu</b>
-                    </span>
-                    <span class="title__notif">Selamat anda sudah mendaftar sebagai
-                        peserta Youth Festival 2021</span>
+
+    <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5>Detail Gambar Nota</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="notif__list">
-                <img src="assets/img/profile/profile.png" class="rounded float-left">
-                <div>
-                    <span class="title__name">
-                        Youth Festival 2021
-                        <b class="float-right time__notif">5 jam yang lalu</b>
-                    </span>
-                    <span class="title__notif">Selamat anda sudah mendaftar sebagai
-                        peserta Youth Festival 2021</span>
+                <div class="modal-body text-center">
+                    <img src="<?= base_url('assets/img/member_kupon/' . $detail_kupon["foto"]); ?>" width="300">
                 </div>
-            </div>
-            <div class="notif__list">
-                <img src="assets/img/profile/profile.png" class="rounded float-left">
-                <div>
-                    <span class="title__name">
-                        Youth Festival 2021
-                        <b class="float-right time__notif">5 jam yang lalu</b>
-                    </span>
-                    <span class="title__notif">Selamat anda sudah mendaftar sebagai
-                        peserta Youth Festival 2021</span>
-                </div>
-            </div>
-            <div class="notif__list">
-                <img src="assets/img/profile/profile.png" class="rounded float-left">
-                <div>
-                    <span class="title__name">
-                        Youth Festival 2021
-                        <b class="float-right time__notif">5 jam yang lalu</b>
-                    </span>
-                    <span class="title__notif">Selamat anda sudah mendaftar sebagai
-                        peserta Youth Festival 2021</span>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+
                 </div>
             </div>
         </div>
     </div>
+
+
 
 
 </body>

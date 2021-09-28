@@ -30,7 +30,7 @@
                             <div class="card-body mx-auto">
                                 <img src="assets/img/kepeng-02.png" alt="" class="img__dompet float-left">
                                 <h4 class="float-left">
-                                    <b>0</b>
+                                    <b><?= $saldo ?></b>
                                     KPG
                                 </h4>
                             </div>
@@ -39,8 +39,8 @@
                 </div>
             </div>
 
-            <div class="content bg-light">
-                <div class="row justify-content-center align-items-center m-0">
+            <div class="content bg-light mb-5">
+                <div class="row justify-content-center align-items-center m-0  mb-5">
                     <div class="col-11 beranda__saldo">
                         <div class="card custome__card__content mb-3">
                             <div class="card-body">
@@ -105,75 +105,113 @@
                     </div>
 
                     <div class="col-11 banner__event">
-                        <div class="card custome__card__content">
-                            <div class="card-body mt-1 mb-1 list__undian">
-                                <span class="icon__transaksi float-left">
-                                    <svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.1677 17.2402V18.5936C12.1677 19.7403 11.101 20.6669 9.78768 20.6669C8.47435 20.6669 7.401 19.7403 7.401 18.5936V17.2402C7.401 18.3869 8.46768 19.2002 9.78768 19.2002C11.101 19.2002 12.1677 18.3802 12.1677 17.2402Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12.1666 15.4065C12.1666 15.7398 12.0733 16.0465 11.9133 16.3132C11.52 16.9598 10.7133 17.3665 9.77995 17.3665C8.84661 17.3665 8.03994 16.9532 7.64661 16.3132C7.48661 16.0465 7.39331 15.7398 7.39331 15.4065C7.39331 14.8332 7.65996 14.3198 8.08663 13.9465C8.51996 13.5665 9.11327 13.3398 9.77327 13.3398C10.4333 13.3398 11.0266 13.5732 11.46 13.9465C11.9 14.3132 12.1666 14.8332 12.1666 15.4065Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12.1677 15.4068V17.2402C12.1677 18.3868 11.101 19.2002 9.78768 19.2002C8.47435 19.2002 7.401 18.3802 7.401 17.2402V15.4068C7.401 14.2602 8.46768 13.3335 9.78768 13.3335C10.4477 13.3335 11.041 13.5668 11.4744 13.9401C11.901 14.3135 12.1677 14.8335 12.1677 15.4068Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M19.6667 13.3133V14.6866C19.6667 15.0533 19.3734 15.3533 19.0001 15.3666H17.6934C16.9734 15.3666 16.3134 14.84 16.2534 14.12C16.2134 13.7 16.3734 13.3066 16.6534 13.0333C16.9 12.78 17.24 12.6333 17.6134 12.6333H19.0001C19.3734 12.6466 19.6667 12.9466 19.6667 13.3133Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.33337 13.0002V11.6668C6.33337 9.8535 7.42671 8.58683 9.12671 8.37349C9.30004 8.34683 9.48004 8.3335 9.66671 8.3335H15.6667C15.84 8.3335 16.0067 8.34015 16.1667 8.36682C17.8867 8.56682 19 9.84016 19 11.6668V12.6335H17.6134C17.24 12.6335 16.9 12.7802 16.6534 13.0335C16.3734 13.3068 16.2134 13.7002 16.2534 14.1202C16.3134 14.8402 16.9734 15.3668 17.6934 15.3668H19V16.3335C19 18.3335 17.6667 19.6668 15.6667 19.6668H14" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <rect x="0.937256" y="0.5" width="24.5691" height="27" rx="5.5" stroke="#E5E5E5" />
+
+
+                        <?php if (count($riwayat) == 0) { ?>
+                            <div class="col-11 mb-4">
+                                <div class="notif__brown">
+                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.61454 1.73531C8.11037 1.3174 8.91079 1.3174 9.39246 1.73531L10.5116 2.69156C10.7241 2.86865 11.1279 3.0174 11.4112 3.0174H12.6154C13.3662 3.0174 13.9825 3.63365 13.9825 4.38448V5.58865C13.9825 5.87198 14.1312 6.26865 14.3083 6.48115L15.2645 7.60031C15.6825 8.09615 15.6825 8.89656 15.2645 9.37823L14.3083 10.4974C14.1312 10.7099 13.9825 11.1066 13.9825 11.3899V12.5941C13.9825 13.3449 13.3662 13.9611 12.6154 13.9611H11.4112C11.1279 13.9611 10.7312 14.1099 10.5187 14.287L9.39954 15.2432C8.90371 15.6611 8.10329 15.6611 7.62162 15.2432L6.50246 14.287C6.28996 14.1099 5.88621 13.9611 5.60996 13.9611H4.37037C3.61954 13.9611 3.00329 13.3449 3.00329 12.5941V11.3828C3.00329 11.1066 2.86162 10.7028 2.68454 10.4974L1.72829 9.37115C1.31746 8.8824 1.31746 8.08906 1.72829 7.60031L2.68454 6.47406C2.86162 6.26156 3.00329 5.8649 3.00329 5.58865V4.39156C3.00329 3.64073 3.61954 3.02448 4.37037 3.02448H5.59579C5.87912 3.02448 6.27579 2.87573 6.48829 2.69865L7.61454 1.73531Z" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M8.5 5.75879V9.18004" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M8.49609 11.3335H8.50246" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                </span>
-                                <div class="title__undian float-left">
-                                    <h6>Top Up</h6>
-                                    <p>
-                                        <img src="assets/img/kepeng-01.png" alt="" height="25">
-                                        <span class="text-success">+50 KPG</span>
-                                    </p>
+                                    <span>Tidak Ada Transaksi</span>
                                 </div>
                             </div>
-                            <div class="lane__content_small"></div>
-                            <div class="card-body mt-1 mb-1 list__undian">
-                                <span class="icon__transaksi float-left">
-                                    <svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.1677 17.2402V18.5936C12.1677 19.7403 11.101 20.6669 9.78768 20.6669C8.47435 20.6669 7.401 19.7403 7.401 18.5936V17.2402C7.401 18.3869 8.46768 19.2002 9.78768 19.2002C11.101 19.2002 12.1677 18.3802 12.1677 17.2402Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12.1666 15.4065C12.1666 15.7398 12.0733 16.0465 11.9133 16.3132C11.52 16.9598 10.7133 17.3665 9.77995 17.3665C8.84661 17.3665 8.03994 16.9532 7.64661 16.3132C7.48661 16.0465 7.39331 15.7398 7.39331 15.4065C7.39331 14.8332 7.65996 14.3198 8.08663 13.9465C8.51996 13.5665 9.11327 13.3398 9.77327 13.3398C10.4333 13.3398 11.0266 13.5732 11.46 13.9465C11.9 14.3132 12.1666 14.8332 12.1666 15.4065Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12.1677 15.4068V17.2402C12.1677 18.3868 11.101 19.2002 9.78768 19.2002C8.47435 19.2002 7.401 18.3802 7.401 17.2402V15.4068C7.401 14.2602 8.46768 13.3335 9.78768 13.3335C10.4477 13.3335 11.041 13.5668 11.4744 13.9401C11.901 14.3135 12.1677 14.8335 12.1677 15.4068Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M19.6667 13.3133V14.6866C19.6667 15.0533 19.3734 15.3533 19.0001 15.3666H17.6934C16.9734 15.3666 16.3134 14.84 16.2534 14.12C16.2134 13.7 16.3734 13.3066 16.6534 13.0333C16.9 12.78 17.24 12.6333 17.6134 12.6333H19.0001C19.3734 12.6466 19.6667 12.9466 19.6667 13.3133Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.33337 13.0002V11.6668C6.33337 9.8535 7.42671 8.58683 9.12671 8.37349C9.30004 8.34683 9.48004 8.3335 9.66671 8.3335H15.6667C15.84 8.3335 16.0067 8.34015 16.1667 8.36682C17.8867 8.56682 19 9.84016 19 11.6668V12.6335H17.6134C17.24 12.6335 16.9 12.7802 16.6534 13.0335C16.3734 13.3068 16.2134 13.7002 16.2534 14.1202C16.3134 14.8402 16.9734 15.3668 17.6934 15.3668H19V16.3335C19 18.3335 17.6667 19.6668 15.6667 19.6668H14" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <rect x="0.937256" y="0.5" width="24.5691" height="27" rx="5.5" stroke="#E5E5E5" />
-                                    </svg>
-                                </span>
-                                <div class="title__undian float-left">
-                                    <h6>Withdraw</h6>
-                                    <p>
-                                        <img src="assets/img/kepeng-01.png" alt="" height="25">
-                                        <span class="text-danger">-50 KPG</span>
-                                    </p>
+                        <?php } ?>
+
+                        <?php if (count($riwayat) > 3) { ?>
+
+                            <?php for ($i = 0; $i < 3; $i++) : ?>
+                                <div class="card custome__card__content">
+                                    <div class="card-body mt-1 mb-1 list__undian">
+                                        <span class="icon__transaksi float-left">
+                                            <svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12.1677 17.2402V18.5936C12.1677 19.7403 11.101 20.6669 9.78768 20.6669C8.47435 20.6669 7.401 19.7403 7.401 18.5936V17.2402C7.401 18.3869 8.46768 19.2002 9.78768 19.2002C11.101 19.2002 12.1677 18.3802 12.1677 17.2402Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M12.1666 15.4065C12.1666 15.7398 12.0733 16.0465 11.9133 16.3132C11.52 16.9598 10.7133 17.3665 9.77995 17.3665C8.84661 17.3665 8.03994 16.9532 7.64661 16.3132C7.48661 16.0465 7.39331 15.7398 7.39331 15.4065C7.39331 14.8332 7.65996 14.3198 8.08663 13.9465C8.51996 13.5665 9.11327 13.3398 9.77327 13.3398C10.4333 13.3398 11.0266 13.5732 11.46 13.9465C11.9 14.3132 12.1666 14.8332 12.1666 15.4065Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M12.1677 15.4068V17.2402C12.1677 18.3868 11.101 19.2002 9.78768 19.2002C8.47435 19.2002 7.401 18.3802 7.401 17.2402V15.4068C7.401 14.2602 8.46768 13.3335 9.78768 13.3335C10.4477 13.3335 11.041 13.5668 11.4744 13.9401C11.901 14.3135 12.1677 14.8335 12.1677 15.4068Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M19.6667 13.3133V14.6866C19.6667 15.0533 19.3734 15.3533 19.0001 15.3666H17.6934C16.9734 15.3666 16.3134 14.84 16.2534 14.12C16.2134 13.7 16.3734 13.3066 16.6534 13.0333C16.9 12.78 17.24 12.6333 17.6134 12.6333H19.0001C19.3734 12.6466 19.6667 12.9466 19.6667 13.3133Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M6.33337 13.0002V11.6668C6.33337 9.8535 7.42671 8.58683 9.12671 8.37349C9.30004 8.34683 9.48004 8.3335 9.66671 8.3335H15.6667C15.84 8.3335 16.0067 8.34015 16.1667 8.36682C17.8867 8.56682 19 9.84016 19 11.6668V12.6335H17.6134C17.24 12.6335 16.9 12.7802 16.6534 13.0335C16.3734 13.3068 16.2134 13.7002 16.2534 14.1202C16.3134 14.8402 16.9734 15.3668 17.6934 15.3668H19V16.3335C19 18.3335 17.6667 19.6668 15.6667 19.6668H14" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                <rect x="0.937256" y="0.5" width="24.5691" height="27" rx="5.5" stroke="#E5E5E5" />
+                                            </svg>
+                                        </span>
+                                        <div class="title__undian float-left">
+                                            <h6><?= $riwayat[$i]["kategori"] ?></h6>
+                                        </div>
+                                        <br>
+                                        <p class="">
+                                            <img src="assets/img/kepeng-01.png" alt="" height="25" class="ml-3">
+                                            <?php if ($riwayat[$i]["kategori"] == "Top Up") { ?>
+                                                <span class="text-success time__notif">
+                                                    <?= "+" . $riwayat[$i]["jumlah"] . " KPG" ?>
+                                                <?php } else { ?>
+                                                    <span class="text-danger time__notif">
+                                                        <?= "-" . $riwayat[$i]["jumlah"] . " KPG" ?>
+                                                    <?php } ?>
+                                                    </span>
+
+                                                    <span>
+                                                        <b class="time__notif float-right">5 jam yang lalu</b>
+                                                    </span>
+                                        </p>
+
+                                    </div>
+                                    <div class="lane__content_small"></div>
+                                    <div class="card-body check__all_undian">
+                                        <a href="<?= base_url('Dompet/DaftarTransaksi') ?>">Lihat transaksi lainnya</a>
+                                    </div>
+
+                                <?php endfor; ?>
+                            <?php } else { ?>
+                                <?php for ($i = 0; $i < count($riwayat); $i++) : ?>
+                                    <div class="card custome__card__content">
+                                        <div class="card-body mt-1 mb-1 list__undian">
+                                            <span class="icon__transaksi float-left">
+                                                <svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12.1677 17.2402V18.5936C12.1677 19.7403 11.101 20.6669 9.78768 20.6669C8.47435 20.6669 7.401 19.7403 7.401 18.5936V17.2402C7.401 18.3869 8.46768 19.2002 9.78768 19.2002C11.101 19.2002 12.1677 18.3802 12.1677 17.2402Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M12.1666 15.4065C12.1666 15.7398 12.0733 16.0465 11.9133 16.3132C11.52 16.9598 10.7133 17.3665 9.77995 17.3665C8.84661 17.3665 8.03994 16.9532 7.64661 16.3132C7.48661 16.0465 7.39331 15.7398 7.39331 15.4065C7.39331 14.8332 7.65996 14.3198 8.08663 13.9465C8.51996 13.5665 9.11327 13.3398 9.77327 13.3398C10.4333 13.3398 11.0266 13.5732 11.46 13.9465C11.9 14.3132 12.1666 14.8332 12.1666 15.4065Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M12.1677 15.4068V17.2402C12.1677 18.3868 11.101 19.2002 9.78768 19.2002C8.47435 19.2002 7.401 18.3802 7.401 17.2402V15.4068C7.401 14.2602 8.46768 13.3335 9.78768 13.3335C10.4477 13.3335 11.041 13.5668 11.4744 13.9401C11.901 14.3135 12.1677 14.8335 12.1677 15.4068Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M19.6667 13.3133V14.6866C19.6667 15.0533 19.3734 15.3533 19.0001 15.3666H17.6934C16.9734 15.3666 16.3134 14.84 16.2534 14.12C16.2134 13.7 16.3734 13.3066 16.6534 13.0333C16.9 12.78 17.24 12.6333 17.6134 12.6333H19.0001C19.3734 12.6466 19.6667 12.9466 19.6667 13.3133Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M6.33337 13.0002V11.6668C6.33337 9.8535 7.42671 8.58683 9.12671 8.37349C9.30004 8.34683 9.48004 8.3335 9.66671 8.3335H15.6667C15.84 8.3335 16.0067 8.34015 16.1667 8.36682C17.8867 8.56682 19 9.84016 19 11.6668V12.6335H17.6134C17.24 12.6335 16.9 12.7802 16.6534 13.0335C16.3734 13.3068 16.2134 13.7002 16.2534 14.1202C16.3134 14.8402 16.9734 15.3668 17.6934 15.3668H19V16.3335C19 18.3335 17.6667 19.6668 15.6667 19.6668H14" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <rect x="0.937256" y="0.5" width="24.5691" height="27" rx="5.5" stroke="#E5E5E5" />
+                                                </svg>
+                                            </span>
+                                            <div class="title__undian float-left">
+                                                <h6><?= $riwayat[$i]["kategori"] ?></h6>
+                                            </div>
+                                            <br>
+                                            <p class="">
+                                                <img src="assets/img/kepeng-01.png" alt="" height="25" class="ml-3">
+                                                <?php if ($riwayat[$i]["kategori"] == "Top Up") { ?>
+                                                    <span class="text-success time__notif">
+                                                        <?= "+" . $riwayat[$i]["jumlah"] . " KPG" ?>
+                                                    <?php } else { ?>
+                                                        <span class="text-danger time__notif">
+                                                            <?= "-" . $riwayat[$i]["jumlah"] . " KPG" ?>
+                                                        <?php } ?>
+                                                        </span>
+
+                                                        <span>
+                                                            <b class="time__notif float-right">5 jam yang lalu</b>
+                                                        </span>
+                                            </p>
+
+                                        </div>
+                                        <div class="lane__content_small"></div>
+                                        <div class="card-body check__all_undian">
+                                            <a href="<?= base_url('Dompet/DaftarTransaksi') ?>">Lihat transaksi lainnya</a>
+                                        </div>
+
+                                    <?php endfor; ?>
+                                <?php } ?>
+
+
+
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="lane__content_small"></div>
-                            <div class="card-body mt-1 mb-1 list__undian">
-                                <span class="icon__transaksi float-left">
-                                    <svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.1677 17.2402V18.5936C12.1677 19.7403 11.101 20.6669 9.78768 20.6669C8.47435 20.6669 7.401 19.7403 7.401 18.5936V17.2402C7.401 18.3869 8.46768 19.2002 9.78768 19.2002C11.101 19.2002 12.1677 18.3802 12.1677 17.2402Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12.1666 15.4065C12.1666 15.7398 12.0733 16.0465 11.9133 16.3132C11.52 16.9598 10.7133 17.3665 9.77995 17.3665C8.84661 17.3665 8.03994 16.9532 7.64661 16.3132C7.48661 16.0465 7.39331 15.7398 7.39331 15.4065C7.39331 14.8332 7.65996 14.3198 8.08663 13.9465C8.51996 13.5665 9.11327 13.3398 9.77327 13.3398C10.4333 13.3398 11.0266 13.5732 11.46 13.9465C11.9 14.3132 12.1666 14.8332 12.1666 15.4065Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12.1677 15.4068V17.2402C12.1677 18.3868 11.101 19.2002 9.78768 19.2002C8.47435 19.2002 7.401 18.3802 7.401 17.2402V15.4068C7.401 14.2602 8.46768 13.3335 9.78768 13.3335C10.4477 13.3335 11.041 13.5668 11.4744 13.9401C11.901 14.3135 12.1677 14.8335 12.1677 15.4068Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M19.6667 13.3133V14.6866C19.6667 15.0533 19.3734 15.3533 19.0001 15.3666H17.6934C16.9734 15.3666 16.3134 14.84 16.2534 14.12C16.2134 13.7 16.3734 13.3066 16.6534 13.0333C16.9 12.78 17.24 12.6333 17.6134 12.6333H19.0001C19.3734 12.6466 19.6667 12.9466 19.6667 13.3133Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.33337 13.0002V11.6668C6.33337 9.8535 7.42671 8.58683 9.12671 8.37349C9.30004 8.34683 9.48004 8.3335 9.66671 8.3335H15.6667C15.84 8.3335 16.0067 8.34015 16.1667 8.36682C17.8867 8.56682 19 9.84016 19 11.6668V12.6335H17.6134C17.24 12.6335 16.9 12.7802 16.6534 13.0335C16.3734 13.3068 16.2134 13.7002 16.2534 14.1202C16.3134 14.8402 16.9734 15.3668 17.6934 15.3668H19V16.3335C19 18.3335 17.6667 19.6668 15.6667 19.6668H14" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
-                                        <rect x="0.937256" y="0.5" width="24.5691" height="27" rx="5.5" stroke="#E5E5E5" />
-                                    </svg>
-                                </span>
-                                <div class="title__undian float-left">
-                                    <h6>Kedai Kopi Mulai</h6>
-                                    <p>
-                                        <img src="assets/img/kepeng-01.png" alt="" height="25">
-                                        <span class="text-danger">-50 KPG</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="lane__content_small"></div>
-                            <div class="card-body check__all_undian">
-                                <a href="<?= base_url('Dompet/DaftarTransaksi') ?>">Lihat transaksi lainnya</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="overlay"></div>
+        <div class="overlay"></div>

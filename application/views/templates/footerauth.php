@@ -141,3 +141,36 @@ $cenvertedTime = $this->session->userdata('date');
         }
     }
 </script>
+
+<script>
+    // document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
+<script>
+    $(document).keydown(function(e) {
+
+
+        if (e.which === 123) {
+
+            return false;
+        }
+        if (e.which == 17 && e.which == 67) {
+
+            return false;
+        }
+
+        if (e.which == 17 && e.which == 85) {
+
+            return false;
+        }
+
+        if (e.which == 17 && e.which == 86) {
+
+            return false;
+        }
+        if (e.which == 115) {
+
+            return false;
+        }
+    });
+</script>

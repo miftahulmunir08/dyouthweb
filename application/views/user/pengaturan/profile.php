@@ -99,17 +99,27 @@
 
 
 
-
-
                                 <div class="col-sm-12 ml-4">
                                     <!-- <div class="cropme ml-5" style="width: 200px; height: 200px;border-radius: 50%;"></div> -->
                                     <form action="<?= base_url('pengaturan/profile') ?>" method="post" autocomplete="off" id="" enctype="multipart/form-data">
 
                                         <label for="upload_image">
                                             <?php if ($data_user["photo_profile"] != NULL) { ?>
-                                                <img src="<?= base_url('Assets/img/profile/' . $data_user['photo_profile']) ?>" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
+                                                <img src="<?= base_url('assets/img/profile/' . $data_user['photo_profile']) ?>" id="uploaded_image" class="img-responsive rounded-circle mr-3" width="150" />
+                                                <div class="ml-5 mb-2 text-white rounded-circle">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square ml-5 mb-3" viewBox="0 0 16 16">
+                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                    </svg>
+                                                </div>
                                             <?php } else { ?>
-                                                <img src="<?= base_url('Assets/img/profile/') ?>profile.png" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
+                                                <img src="<?= base_url('assets/img/profile/') ?>profile2.png" id="uploaded_image" class="img-responsive rounded-circle mr-4" width="150" />
+                                                <div class="ml-5 mb-2 text-white rounded-circle">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square ml-5 mb-3" viewBox="0 0 16 16">
+                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                    </svg>
+                                                </div>
                                             <?php } ?>
 
                                             <div class="overr">
@@ -150,14 +160,14 @@
 
                                 <div class="form-group">
                                     <span class="text__form_gray">Name</span>
-                                    <input type="text" class="form__login" name="nama" value="<?= $data_user["name"]; ?>">
+                                    <input type="text" class="form__login" name="nama" value="<?= $data_user["customer_name"]; ?>">
                                     <?= form_error('nama', '<small class="text-danger">',  '</small>') ?>
                                 </div>
 
                                 <div class=" form-group">
                                     <span>Tanggal Lahir</span>
                                     <input id="serial" class="form__login inf" name="born" type="text" placeholder="dd/mm/yyyy" maxlength="10" value="<?php
-                                                                                                                                                        $tgl = $data_user["born"];
+                                                                                                                                                        $tgl = $data_user["customer_born"];
                                                                                                                                                         $tgl = explode("-", $tgl);
                                                                                                                                                         $tgl = implode("/", $tgl);
                                                                                                                                                         echo $tgl;
@@ -170,7 +180,7 @@
                                     <select class="custom-select form__select" name="sex" id="inputGroupSelect01" required>
                                         <option value="">Select</option>
                                         <?php foreach ($sex as $kelamin) : ?>
-                                            <?php if ($data_user["gender"] == $kelamin) { ?>
+                                            <?php if ($data_user["customer_gender"] == $kelamin) { ?>
                                                 <option value="<?= $kelamin ?>" selected><?= $kelamin ?></option>
                                             <?php } else {  ?>
                                                 <option value="<?= $kelamin ?>"><?= $kelamin ?></option>
@@ -185,7 +195,7 @@
                                         <option value="">Select</option>
 
                                         <?php foreach ($category as $cat) : ?>
-                                            <?php if ($data_user["category"] == $cat) { ?>
+                                            <?php if ($data_user["customer_category"] == $cat) { ?>
                                                 <option value="<?= $cat ?>" selected><?= $cat ?></option>
                                             <?php } else {  ?>
                                                 <option value="<?= $cat ?>"><?= $cat ?></option>
@@ -209,13 +219,13 @@
 
                                     <div class="form-group">
                                         <span class="text__form_gray">Email</span>
-                                        <input type="text" class="form__login" name="email" value="<?= $data_user["email"] ?>">
+                                        <input type="text" class="form__login" name="email" value="<?= $data_user["customer_email"] ?>">
                                         <?= form_error('email', '<small class="text-danger">',  '</small>') ?>
                                     </div>
 
                                     <div class="form-group">
                                         <span class="text__form_gray">Password</span>
-                                        <input type="password" class="form__login" name="password" value="<?= $data_user["password"] ?>">
+                                        <input type="password" class="form__login" name="password" value="<?= $data_user["customer_password"] ?>">
                                         <?= form_error('password', '<small class="text-danger">',  '</small>') ?>
                                     </div>
                                     <button type="submit" class="btn__blue_gradient_small d-block btn-block">Simpan
@@ -314,7 +324,7 @@
                     reader.onloadend = function() {
                         var base64data = reader.result;
                         $.ajax({
-                            url: '<?= base_url('Pengaturan/updatephoto') ?>',
+                            url: '<?= base_url('pengaturan/updatephoto') ?>',
                             method: 'POST',
                             data: {
                                 image: base64data

@@ -28,16 +28,20 @@
             <div class="content bg-light">
                 <div class="row justify-content-center align-items-center m-0">
                     <div class="col-12">
+
+
                         <div class="setting__item mt-4">
-                            <div class="input-group search__form mb-2">
-                                <div class="input-group-prepend btn__search_setting">
-                                    <div class="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg>
+                            <div class="col-12">
+                                <div class="input-group search__form mb-2">
+                                    <div class="input-group-prepend btn__search_setting">
+                                        <div class="">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                            </svg>
+                                        </div>
                                     </div>
+                                    <input type="text" class="setting__search form-control" id="inlineFormInputGroup" placeholder="Cari pengaturan">
                                 </div>
-                                <input type="text" class="setting__search" id="inlineFormInputGroup" placeholder="Cari pengaturan">
                             </div>
 
                             <div class="setting__list">
@@ -55,7 +59,7 @@
                                     </a>
                                 </div>
                                 <div class="card__list">
-                                    <a href="<?= base_url('coming_soon') ?>" class="d-block">
+                                    <a href="<?= base_url('pengaturan/notifikasi') ?>" class="d-block">
                                         <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M7.51249 1.81879C5.44374 1.81879 3.76249 3.50004 3.76249 5.56879V7.37504C3.76249 7.75629 3.59999 8.33754 3.40624 8.66254L2.68749 9.85629C2.24374 10.5938 2.54999 11.4125 3.36249 11.6875C6.05624 12.5875 8.96249 12.5875 11.6562 11.6875C12.4125 11.4375 12.7437 10.5438 12.3312 9.85629L11.6125 8.66254C11.425 8.33754 11.2625 7.75629 11.2625 7.37504V5.56879C11.2625 3.50629 9.57499 1.81879 7.51249 1.81879Z" stroke="#292D32" stroke-miterlimit="10" stroke-linecap="round" />
                                             <path d="M8.6687 2.00002C8.47495 1.94377 8.27495 1.90002 8.0687 1.87502C7.4687 1.80002 6.8937 1.84377 6.3562 2.00002C6.53745 1.53752 6.98745 1.21252 7.51245 1.21252C8.03745 1.21252 8.48745 1.53752 8.6687 2.00002Z" stroke="#292D32" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -71,7 +75,7 @@
                                     </a>
                                 </div>
                                 <div class="card__list">
-                                    <a href="<?= base_url('coming_soon') ?>" class="d-block">
+                                    <a href="<?= base_url('pengaturan/ubahpin') ?>" class="d-block">
                                         <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M3.5 5.83335V4.66669C3.5 2.73585 4.08333 1.16669 7 1.16669C9.91667 1.16669 10.5 2.73585 10.5 4.66669V5.83335" stroke="#353535" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M6.99996 10.7917C7.80537 10.7917 8.45829 10.1387 8.45829 9.33333C8.45829 8.52792 7.80537 7.875 6.99996 7.875C6.19454 7.875 5.54163 8.52792 5.54163 9.33333C5.54163 10.1387 6.19454 10.7917 6.99996 10.7917Z" stroke="#353535" stroke-linecap="round" stroke-linejoin="round" />

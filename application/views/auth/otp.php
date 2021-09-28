@@ -68,7 +68,7 @@
                             </div>
                             <?= form_error('satu[]', '<small class="text-danger text-danger">',  '</small>') ?>
 
-                            <p>Didn’t get the code? <a href="<?= base_url('Auth/resend') ?>" class="forgot__link  font-weight-bold">Resend it
+                            <p>Didn’t get the code? <a href="<?= base_url('Auth/resend') ?>" class="forgot__link font-weight-bold">Resend it
                                     (<span id="demo"></span>)</a></p>
 
                             <button type="submit" id="sendlogin" class="button btn__login d-block btn-block"><i class="loading-icon fa fa-spinner fa-spin hide"></i>

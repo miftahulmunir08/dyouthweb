@@ -52,15 +52,16 @@
                     <div class="col-11">
                         <div class="card custome__card__content mt-5 mb-5">
                             <div class="card-body pl-5 pr-5 pt-4 pb-4 entrance__tiket_content">
-                                <h6 class="text-center mb-3">#UNDIANYUK1</h6>
+                                <h6 class="text-center mb-3">#DOORPRIZEDYOUTH
+                                </h6>
                                 <p class="text-center">
                                     Foto nota belanja di distro, coffee shop
-                                    ,barbershop dan Studio Musik di <b>Kota Denpasar</b>
+                                    ,barbershop, Studio Musik dan Butik di <b>Kota Denpasar</b>
                                 </p>
                                 <div class="lane__content_small mt-4 mb-4"></div>
-                                <p class="mb-2">Tata cara mengikuti <b>#UNDIANYUK1</b> yaitu: </p>
+                                <p class="mb-2">Tata cara mengikuti <b>#DOORPRIZEDYOUTH</b> yaitu: </p>
                                 <ol class="">
-                                    <li>Melakukan transaksi di distro, coffee shop, barbershop, dan studio musik di Kota Denpasar. Status usaha tersebut bukan merupakan franchise brand nasional (luar bali)  maupun internasional</li>
+                                    <li>Melakukan transaksi di distro, coffee shop, barbershop, studio musik dan butik di Kota Denpasar. Status usaha tersebut bukan merupakan franchise brand nasional (luar bali)  maupun internasional</li>
                                     <li>Minimal transaksi sebesar Rp. 15.000 dalam 1 struk atau nota dengan rentan waktu transaksi antara tanggal 1 september 2021 hingga 30 Oktober 2021.</li>
                                     <li>Struk atau nota tersebut wajib berisi kop struk atau kop nota. Jika tidak memiliki kop diperbolehkan dengan stempel resmi usaha tersebut.</li>
                                     <li>Foto, upload dan berikan keterangan transaksi dan data diri yang benar di www.dyouthfest.com yg terhubung dengan D’Youth Mobile Application. Kemudian simpan nota / struk tersebut hingga tanggal pengundian.</li>

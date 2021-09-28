@@ -154,7 +154,7 @@
                             <?php endif; ?>
 
                             <div class="form-group">
-                                <span>Nama<span style="font-size: 7pt;font-weight: 900;color: blue;"> (* sesuai identitas)</span></span>
+                                <span>Nama<span style="font-size: 7pt;font-weight: 900;color: #f12711;"> (* sesuai identitas)</span></span>
                                 <input type="text" class="form__login" name="name" value="<?= set_value('name') ?>">
                                 <?= form_error('name', '<small class="text-danger">',  '</small>') ?>
                             </div>

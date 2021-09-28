@@ -104,7 +104,7 @@ class Akses extends CI_Controller
 
         $data['title'] = "Akses";
 
-        $this->form_validation->set_rules('password', 'password', 'required');
+        $this->form_validation->set_rules('kode[]', 'Kode', 'required');
 
 
         if ($this->form_validation->run() == FALSE) {

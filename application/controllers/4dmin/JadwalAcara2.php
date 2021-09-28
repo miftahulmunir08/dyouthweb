@@ -10,6 +10,11 @@ class JadwalAcara2 extends CI_Controller
         parent::__construct();
         $this->load->model('Admin_acara_model', "acara");
         $this->load->library('form_validation');
+        $role = $this->session->userdata("role");
+
+        if ($role == NULL) {
+            redirect('4dmin/');
+        }
     }
 
     public function index()

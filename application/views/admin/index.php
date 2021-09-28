@@ -13,8 +13,17 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center mt-2">
+                                    <?php
+                                    if ($this->session->flashdata('flash')) :
+                                    ?>
+
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <?= $this->session->flashdata('flash'); ?><strong> </strong>
+                                        </div>
+
+                                    <?php endif; ?>
                                     <img class="rounded-circle" src="<?= base_url() ?>assets/img/dyouth.png" width="150">
-                                    <?= $this->session->flashdata('message') ?>
                                 </div>
                                 <form class="user mt-3" method="post" action="<?= BASE_URL('4dmin/Auth/login') ?>">
                                     <div class="form-group">

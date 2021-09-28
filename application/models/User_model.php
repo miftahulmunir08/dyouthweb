@@ -8,7 +8,7 @@ class User_model extends CI_Model
     public function getDataHome($id)
     {
 
-        $data_user = $this->db->get_where('users', ['id' => $id])->row_array();
+        $data_user = $this->db->get_where('customers', ['customer_id' => $id])->row_array();
         // var_dump($data_user);
         // die;
         return $data_user;
@@ -55,6 +55,8 @@ class User_model extends CI_Model
             "id_user" => $datakupon["id_user"],
             "kode_kupon" => $datakupon["kode_kupon"],
             "tenant"    => $datakupon["tenant"],
+            "nama_tenant" => $datakupon["nama_tenant"],
+            "foto" => $datakupon["foto"],
             "jumlah" => $this->rupiah($datakupon["nominal"]),
             "tanggal" => $datakupon["created_at"],
             "status" => "Menunggu hasil undian"
@@ -121,17 +123,17 @@ class User_model extends CI_Model
         $id = $this->session->userdata("id");
         $data =
             [
-                "name"        => $this->input->post('nama',  TRUE),
-                "gender"      => $this->input->post('sex', TRUE),
-                "born"        => $this->input->post('born', TRUE),
-                "category"   => $this->input->post('category', TRUE),
+                "customer_name"        => $this->input->post('nama',  TRUE),
+                "customer_gender"      => $this->input->post('sex', TRUE),
+                "customer_born"        => $this->input->post('born', TRUE),
+                "customer_category"   => $this->input->post('category', TRUE),
             ];
 
         // var_dump($data);
         // die;
 
-        $this->db->where('id', $id);
-        $result = $this->db->update('users', $data);
+        $this->db->where('customer_id', $id);
+        $result = $this->db->update('customers', $data);
 
         if ($result != NULL) {
             $this->session->set_flashdata('flash', 'Data Identitas Berhasil Di Update');
@@ -147,12 +149,12 @@ class User_model extends CI_Model
         $id = $this->session->userdata("id");
         $data =
             [
-                "email"        => $this->input->post('email',  TRUE),
-                "password"      => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
+                "customer_email"        => $this->input->post('email',  TRUE),
+                "customer_password"      => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
             ];
 
-        $this->db->where('id', $id);
-        $result = $this->db->update('users', $data);
+        $this->db->where('customer_id', $id);
+        $result = $this->db->update('customers', $data);
 
         if ($result != NULL) {
             $this->session->set_flashdata('flash', 'Data Akun Berhasil Di Update');
@@ -184,23 +186,30 @@ class User_model extends CI_Model
         $id = $this->session->userdata("id");
         $data = $this->getDataHome($id);
         if ($data != NULL) {
-            if (password_verify($this->input->post('password', true), $data["password"])) {
+
+            $kode = implode("", $this->input->post('kode'));
+
+
+            if ($kode == $data["customer_user_pin"]) {
                 // var_dump($this->session->userdata());
                 // die;
                 $bar = substr(uniqid(), 7, 10);
                 // var_dump($bar);
                 // die;
-
-                $this->qr_ticket("ET" . "-" . $bar);
-                $kode_qr = $bar . ".png";
-
+                $ticket = "ET" . "-" . $bar;
+                $this->qr_ticket($ticket);
+                $kode_qr = $ticket . ".png";
 
                 $data = [
                     "tanggal" => $this->session->userdata('tanggal'),
                     "id_user" => $this->session->userdata('id'),
                     "barcode" => $kode_qr,
+                    "kode_tiket" => $ticket,
                     "status_ticket" => 0
                 ];
+
+                // var_dump($data);
+                // die;
 
                 $this->session->set_userdata("barcode_tiket", $kode_qr);
 
@@ -229,14 +238,132 @@ class User_model extends CI_Model
         return $this->db->get_where('users_ticket', ['id_ticket' => $id])->row_array();
     }
 
+    public function getDataNotifikasi()
+    {
+        $this->db->select('*');
+        $this->db->from('admin_notifikasi');
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
 
+    public function getNotifById($id)
+    {
+        return $this->db->get_where('admin_notifikasi', ['id_notifikasi' => $id])->row_array();
+    }
+
+    public function ubahPin()
+    {
+        $id = $this->session->userdata("id");
+
+        $data =
+            [
+                "user_pin"        => $this->input->post('password',  TRUE),
+            ];
+
+        // var_dump($data);
+        // die;
+
+        $this->db->where('id', $id);
+        return $this->db->update('users', $data);
+    }
+
+    public function getPinById()
+    {
+        $id = $this->session->userdata("id");
+        $data = $this->db->get_where('customers', ['customer_id' => $id])->row_array();
+        return $data;
+    }
+
+
+    public function saldo($id)
+    {
+
+
+        $datakupon = $this->db->get_where('customers', ['customer_id' => $id])->row_array();
+
+        // var_dump($datakupon);
+
+
+        $this->db->select_sum('jumlah');
+        $this->db->from('wallet');
+        $this->db->where('wallet_type', 'Top Up');
+        $this->db->where('id_gelang', $datakupon['customer_gelang']);
+        $masuk = $this->db->get()->row_array();
+
+
+        $this->db->select_sum('jumlah');
+        $this->db->from('wallet');
+        $this->db->where('wallet_type', 'Withdraw');
+        $this->db->where('id_gelang', $datakupon['customer_gelang']);
+        $keluar = $this->db->get()->row_array();
+
+
+        $names = array('Withdraw', 'Top Up');
+        $this->db->select_sum('jumlah');
+        $this->db->from('wallet');
+        $this->db->where('id_gelang', $datakupon['customer_gelang']);
+        $this->db->where_not_in('wallet_type', $names);
+        $beli = $this->db->get()->row_array();
+
+        $hasil = (int)$masuk["jumlah"] - (int)$keluar["jumlah"] - (int)$beli["jumlah"];
+
+        return $hasil;
+    }
+
+    public function riwayat($id)
+    {
+        $this->db->select('*');
+        $this->db->from('users_transaksi');
+        $this->db->where('id_user', $id);
+        return $this->db->get()->result_array();
+    }
+
+    public function detailtransaksi($id)
+    {
+        $this->db->select('*');
+        $this->db->from('users_transaksi');
+        $this->db->where('id_transaksi', $id);
+        return $this->db->get()->row_array();
+    }
+
+    public function getKeranjang($id)
+    {
+        $this->db->select('*');
+        $this->db->from('order_details');
+        $this->db->where('invoice_id', $id);
+        return $this->db->get()->result_array();
+    }
+
+    public function cek_pin()
+    {
+
+        $kode = implode("", $this->input->post('kode'));
+        $id = $this->session->userdata("id");
+        $this->session->set_userdata("jml", $this->input->post('jml'));
+
+        $this->db->select('*');
+        $this->db->from('customers');
+        $this->db->where('customer_id', $id);
+        $this->db->where('customer_user_pin', $kode);
+        $status_pin = $this->db->get()->row_array();
+
+        $belanja = $this->input->post('jml');
+
+        $saldo = $this->saldo($id);
+        $saldokini = (float)$saldo - (float)$belanja;
+
+        $data = [
+            "status_pin" => count($status_pin),
+            "saldo" => (float)$saldokini,
+            "belanja" => $belanja
+        ];
+
+        return $data;
+    }
 
 
 
     //helper
-
-
-
 
     public function timeAgo($timeAgo)
     {

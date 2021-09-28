@@ -17,6 +17,30 @@ class Pengaturan extends CI_Controller
         if ($role == NULL) {
             redirect('Auth');
         }
+
+
+
+        // if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
+        //     echo "iPhone or iPad";
+        // } else {
+        //     echo "Other, non-iOS device";
+        // }
+
+        // $isWebView = false;
+        // if ((strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false)) :
+        //     $isWebView = true;
+        //     echo "true";
+        // elseif (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) :
+        //     echo "true";
+        // endif;
+
+        // if (!$isWebView) :
+        //     echo "false";
+        //     // Android or iOS Webview
+        // else :
+        //     echo "true";
+        // // Normal Browser
+        // endif;
     }
 
     public function index()
@@ -113,6 +137,66 @@ class Pengaturan extends CI_Controller
         }
     }
 
+    public function notifikasi()
+    {
+        $data['title'] = "Notifikasi";
+        $id = $this->session->userdata("id");
+        $data["data_user"] = $this->User->getDataHome($id);
+        $data["data_notifikasi"] = $this->User->getDataNotifikasi();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/notification', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('user/pengaturan/notifikasi', $data);
+        $this->load->view('templates/navbottom');
+        $this->load->view('templates/footer');
+    }
+
+    public function detailnotifikasi($id)
+    {
+        $data['title'] = "Detail Notifikasi";
+        $id = $this->session->userdata("id");
+        $data["data_user"] = $this->User->getDataHome($id);
+        $data['notif'] = $this->User->getNotifById($id);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/notification', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('user/pengaturan/detailnotifikasi', $data);
+        $this->load->view('templates/navbottom');
+        $this->load->view('templates/footer');
+    }
+
+
+    public function ubahpin()
+    {
+        $data['title'] = "Ubah Pin";
+        $id = $this->session->userdata("id");
+        $data["data_user"] = $this->User->getDataHome($id);
+        $data["data_notifikasi"] = $this->User->getDataNotifikasi();
+
+        $this->form_validation->set_rules('password', 'Pin', 'required');
+        $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|matches[password]');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data["users"] = $this->User->getPinById();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/notification', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('user/pengaturan/ubahpin', $data);
+            $this->load->view('templates/navbottom');
+            $this->load->view('templates/footer');
+        } else {
+            $this->User->ubahPin();
+            $this->session->set_flashdata('flash', 'Pin Berhasil diubah');
+            $this->session->set_flashdata('color', 'success');
+            redirect('pengaturan/ubahpin');
+        }
+    }
+
+
+
+
+
     public function updatephoto()
     {
         if (isset($_POST['image'])) {
@@ -146,10 +230,19 @@ class Pengaturan extends CI_Controller
             unlink($path_img);
 
             $data = ["photo_profile" => $name];
-            $this->db->where('id', $iduser);
-            $this->db->update('users', $data);
-
+            $this->db->where('customer_id', $iduser);
+            $this->db->update('customers', $data);
             // }
+        }
+    }
+
+
+    public function get_jadwal()
+    {
+        if (isset($_POST['tanggal'])) {
+            $tanggal =  $this->input->post('tanggal', TRUE);
+            $data = $this->db->get_where('admin_acara', ['tanggal' => $tanggal])->result();
+            echo json_encode($data);
         }
     }
 }

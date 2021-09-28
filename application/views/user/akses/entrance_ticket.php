@@ -52,10 +52,16 @@
                                         <?= form_error('tanggal', '<small class="text-danger">',  '</small>') ?>
                                     </div>
 
-                                    <p class="text-justify mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    <p class="mt-2">Pilih Tanggal Untuk Mengetahui Jadwal</p>
+                                    <ul id="jadwal" class="mt-2" style="list-style-type:circle;">
+
+                                    </ul>
+
+
+                                    <!-- <p class="text-justify mt-4" id="jadwal">Lorem ipsum dolor sit amet, consectetur adipiscing
                                         elit.
                                         tricies volut Sit velit ulpat id nibh ligula et enim. Facilisis nisi, dolor vitae at
-                                        lacinia gravida mauris at. Adipiscing eget augue scelerisque cursus lacus, eget.</p>
+                                        lacinia gravida mauris at. Adipiscing eget augue scelerisque cursus lacus, eget.</p> -->
 
                                     <button type="submit" class="btn__blue_gradient_small d-block btn-block">Pesan
                                         tiket</button>
@@ -71,16 +77,45 @@
     <div class="overlay"></div>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js">
-    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
     <script type="text/javascript">
         $(".date").datepicker({
             format: "dd-mm-yyyy",
+        });
+    </script>
+
+    <script>
+        $('input[name=tanggal]').change(function() {
+            // alert(this.value);
+            // $("#jadwal").html(this.value);
+            var id = $(this).val();
+            // alert('halo');
+            $.ajax({
+                url: "<?= site_url('Pengaturan/get_jadwal'); ?>",
+                method: "POST",
+                data: {
+                    tanggal: id
+                },
+                dataType: 'json',
+                success: function(data) {
+
+                    if (!$.trim(data)) {
+                        html = '<li><p>' + 'tidak ada jadwal' + '</p></li>';
+                        $('#jadwal').html(html);
+                    } else {
+                        var html = '';
+                        var i;
+
+                        for (i = 0; i < data.length; i++) {
+                            html += '<li><p>' + data[i].acara + '</p></li>';
+                        }
+                        $('#jadwal').html(html);
+                    }
+                }
+            });
+            return false;
         });
     </script>
 

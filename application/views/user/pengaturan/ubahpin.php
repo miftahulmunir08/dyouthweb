@@ -76,7 +76,7 @@
                         </a>
                     </div>
                 </nav>
-                <div class="row justify-content-center align-items-center m-0 mb-5 header__profile_edit">
+                <div class="row justify-content-center align-items-center m-0 header__profile_edit">
                     <div class="col-10 col-md-8 col-lg-6 col-xl-4">
                         <div class="card custome__card_profile">
                             <div class="card-body">
@@ -103,19 +103,20 @@
 
                                 <div class="col-sm-12 ml-4">
                                     <!-- <div class="cropme ml-5" style="width: 200px; height: 200px;border-radius: 50%;"></div> -->
-                                    <form action="<?= base_url('pengaturan/profile') ?>" method="post" autocomplete="off" id="" enctype="multipart/form-data">
+                                    <form action="<?= base_url('pengaturan/ubahpin') ?>" method="post" autocomplete="off" id="" enctype="multipart/form-data">
 
                                         <label for="upload_image">
                                             <?php if ($data_user["photo_profile"] != NULL) { ?>
-                                                <img src="<?= base_url('Assets/img/profile/' . $data_user['photo_profile']) ?>" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
+                                                <img src="<?= base_url('assets/img/profile/' . $data_user['photo_profile']) ?>" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
                                             <?php } else { ?>
-                                                <img src="<?= base_url('Assets/img/profile/') ?>profile.png" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
+                                                <img src="<?= base_url('assets/img/profile/') ?>profile.png" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
                                             <?php } ?>
 
                                             <div class="overr">
 
                                             </div>
-                                            <input type="file" name="image" class="image" id="upload_image" style="display:none" />
+
+
                                         </label>
 
                                 </div>
@@ -123,15 +124,6 @@
                                 <!-- <img src="<?= base_url() ?>assets/img/profile/profile.png" class="rounded-circle cropme"> -->
                                 <div class="cropme text-center" style="width: 200px; height: 200px;border-radius: 50%;"></div>
                                 <div class="photo__profile_edit rounded-circle">
-                                    <label for="edit__photo_profile">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                        </svg>
-                                    </label>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -139,61 +131,43 @@
                 </div>
             </div>
 
-            <div class=" content bg-light mb-5">
+            <div class=" content bg-light">
                 <div class="row justify-content-center align-items-center m-0">
                     <div class="col-11 edit__profile_identitas">
-                        <div class="card custome__card__content mb-5 mt-5">
+                        <div class="card custome__card__content mt-5">
                             <div class="card-body pb-4">
                                 <img id="result">
-                                <h5 class="mb-4">Identitas</h5>
+                                <h5 class="">Ubah Pin</h5>
 
-
-                                <div class="form-group">
-                                    <span class="text__form_gray">Name</span>
-                                    <input type="text" class="form__login" name="nama" value="<?= $data_user["name"]; ?>">
-                                    <?= form_error('nama', '<small class="text-danger">',  '</small>') ?>
+                                <div class=" form-group">
+                                    <span>Pin</span>
+                                    <div class="form-label-group input-group">
+                                        <input type="password" id="password" class="form-control" placeholder="Password" name="password" style="padding:20px;" rows="10" required value="<?= $users['user_pin'] ?>">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i id="eye" class="far fa-eye-slash" style="font-size:12pt;margin-top:5px"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <?= form_error('password', '<small class="text-danger">',  '</small>') ?>
                                 </div>
 
                                 <div class=" form-group">
-                                    <span>Tanggal Lahir</span>
-                                    <input id="serial" class="form__login inf" name="born" type="text" placeholder="dd/mm/yyyy" maxlength="10" value="<?php
-                                                                                                                                                        $tgl = $data_user["born"];
-                                                                                                                                                        $tgl = explode("-", $tgl);
-                                                                                                                                                        $tgl = implode("/", $tgl);
-                                                                                                                                                        echo $tgl;
-                                                                                                                                                        ?>" />
-                                    <?= form_error('born', '<small class="text-danger">',  '</small>') ?>
+                                    <span>Konfirmasi Password</span>
+                                    <div class="form-label-group input-group">
+                                        <input type="password" id="password2" class="form-control" placeholder="Password" name="password2" style="padding:20px;" rows="10" required value="<?= $users['user_pin'] ?>">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i id="eye2" class="far fa-eye-slash" style="font-size:12pt;margin-top:5px"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <?= form_error('password2', '<small class="text-danger">',  '</small>') ?>
                                 </div>
 
-                                <div class=" form-group">
-                                    <span class="text__form_gray">Jenis Kelamin</span>
-                                    <select class="custom-select form__select" name="sex" id="inputGroupSelect01" required>
-                                        <option value="">Select</option>
-                                        <?php foreach ($sex as $kelamin) : ?>
-                                            <?php if ($data_user["gender"] == $kelamin) { ?>
-                                                <option value="<?= $kelamin ?>" selected><?= $kelamin ?></option>
-                                            <?php } else {  ?>
-                                                <option value="<?= $kelamin ?>"><?= $kelamin ?></option>
-                                            <?php } ?>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
 
-                                <div class="form-group">
-                                    <span class="text__form_gray">Category</span>
-                                    <select class="custom-select form__select" name="category" id="inputGroupSelect01" required>
-                                        <option value="">Select</option>
 
-                                        <?php foreach ($category as $cat) : ?>
-                                            <?php if ($data_user["category"] == $cat) { ?>
-                                                <option value="<?= $cat ?>" selected><?= $cat ?></option>
-                                            <?php } else {  ?>
-                                                <option value="<?= $cat ?>"><?= $cat ?></option>
-                                            <?php } ?>
 
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
                                 <button type="submit" class="btn__blue_gradient_small d-block btn-block">Simpan
                                     perubahan</button>
                                 </form>
@@ -201,59 +175,7 @@
                         </div>
                     </div>
 
-                    <div class="col-11">
-                        <div class="card custome__card__content mb-5">
-                            <div class="card-body pb-4">
-                                <h5 class="mb-4">Akun</h5>
-                                <form action="<?= base_url('pengaturan/profile2') ?>" method="post" autocomplete="off" id="form">
 
-                                    <div class="form-group">
-                                        <span class="text__form_gray">Email</span>
-                                        <input type="text" class="form__login" name="email" value="<?= $data_user["email"] ?>">
-                                        <?= form_error('email', '<small class="text-danger">',  '</small>') ?>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <span class="text__form_gray">Password</span>
-                                        <input type="password" class="form__login" name="password" value="<?= $data_user["password"] ?>">
-                                        <?= form_error('password', '<small class="text-danger">',  '</small>') ?>
-                                    </div>
-                                    <button type="submit" class="btn__blue_gradient_small d-block btn-block">Simpan
-                                        perubahan</button>
-                                </form>
-                                <div class="col-sm-12">
-                                    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Crop Image Before Upload</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="img-container">
-                                                        <div class="col-xs-10">
-                                                            <img src="" id="sample_image" />
-                                                        </div>
-                                                        <div class="col-xs-4">
-                                                            <div class="preview"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" id="crop" class="btn btn-primary">Crop</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -264,73 +186,33 @@
 
     <script>
         $(document).ready(function() {
-
-            var $modal = $('#modal');
-
-            var image = document.getElementById('sample_image');
-
-            var cropper;
-
-            $('#upload_image').change(function(event) {
-                var files = event.target.files;
-
-                var done = function(url) {
-                    image.src = url;
-                    $modal.modal('show');
-                };
-
-                if (files && files.length > 0) {
-                    reader = new FileReader();
-                    reader.onload = function(event) {
-                        done(reader.result);
-                    };
-                    reader.readAsDataURL(files[0]);
+            $('#eye').click(function() {
+                $('#password').attr('type', $('#password').is(':password') ? 'text' : 'password');
+                if ($('#password').attr('type') === 'password') {
+                    $('#eye').removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    $('#eye').removeClass('fa-eye-slash').addClass('fa-eye');
                 }
             });
 
-            $modal.on('shown.bs.modal', function() {
-                cropper = new Cropper(image, {
-                    aspectRatio: 1,
-                    viewMode: 3,
-                    preview: '.preview'
-                });
-            }).on('hidden.bs.modal', function() {
-                cropper.destroy();
-                cropper = null;
+            $('#eye2').click(function() {
+                $('#password2').attr('type', $('#password2').is(':password') ? 'text' : 'password');
+                if ($('#password2').attr('type') === 'password') {
+                    $('#eye2').removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    $('#eye2').removeClass('fa-eye-slash').addClass('fa-eye');
+                }
             });
+        });
+    </script>
 
-            $('#crop').click(function() {
-                canvas = cropper.getCroppedCanvas({
-                    width: 400,
-                    height: 400,
-
-
-                });
-
-                canvas.toBlob(function(blob) {
-                    url = URL.createObjectURL(blob);
-                    var reader = new FileReader();
-                    reader.readAsDataURL(blob);
-                    reader.onloadend = function() {
-                        var base64data = reader.result;
-                        $.ajax({
-                            url: '<?= base_url('Pengaturan/updatephoto') ?>',
-                            method: 'POST',
-                            data: {
-                                image: base64data
-                            },
-                            success: function(data) {
-                                $modal.modal('hide');
-                                $('#uploaded_image').attr('src', data);
-
-                            }
-                        });
-                    };
-                });
-            });
+    <script>
+        $(document).ready(function() {
 
         });
     </script>
+
+
 
 
 </body>

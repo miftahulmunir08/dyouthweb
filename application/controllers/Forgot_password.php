@@ -81,7 +81,135 @@ class Forgot_password extends CI_Controller
 
                 $mail->isHTML(true);
 
-                $mailContent = 'Click this link to change your account password : <a href="' . base_url() . 'forgot_password/create_New?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>';
+                $mailContent = "
+                
+                <!doctype html>
+                <html lang='en'>
+                
+                <head>
+                    <!-- Required meta tags -->
+                    <meta charset='utf-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+                    <!-- Bootstrap CSS -->
+                    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous'>
+                    <title>Hello, world!</title>
+                
+                    <style type='text/css'>
+                        @media screen and (max-width: 350px) {
+                            .three-col .column {
+                                max-width: 100% !important;
+                            }
+                        }
+                
+                        @media screen and (min-width: 351px) and (max-width: 460px) {
+                            .three-col .column {
+                                max-width: 50% !important;
+                            }
+                        }
+                
+                        @media screen and (max-width: 460px) {
+                
+                            .two-col .column,
+                            .two-col img {
+                                max-width: 100% !important;
+                            }
+                        }
+                
+                        @media screen and (min-width: 461px) {
+                            .three-col .column {
+                                max-width: 33.3% !important;
+                            }
+                
+                            .two-col .column {
+                                max-width: 50% !important;
+                            }
+                
+                            .sidebar .small {
+                                max-width: 16% !important;
+                            }
+                
+                            .sidebar .large {
+                                max-width: 84% !important;
+                            }
+                        }
+                    </style>
+                </head>
+                
+                <body style='margin:0;padding:0;word-spacing:normal;background-color:#ffffff;'>
+                    <div role='article' aria-roledescription='email' lang='en' style='-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background-color:#ffffff;'>
+                        <table width='100%' align='center' border='0' cellpadding='0' cellspacing='0' role='presentation'>
+                            <tr>
+                                <td align='center'>
+                
+                                    <table role='presentation' align='center' style='width:660px;'>
+                                        <tr>
+                                            <td style='padding:20px 0;'>
+                
+                                                <div class='outer' style='width:96%;max-width:660px;margin:20px auto;'>
+                
+                
+                                                    <div class='spacer' style='line-height:26px;height:26px;mso-line-height-rule:exactly;'>&nbsp;</div>
+                
+                                                    <div class='two-col' style='text-align:center;font-size:0;'>
+                
+                                                    </div>
+                
+                                                    <div class='spacer' style='line-height:24px;height:24px;mso-line-height-rule:exactly;'>&nbsp;</div>
+                
+                                                    <div class='two-col' style='text-align:center;font-size:0;direction:rtl;'>
+                
+                                                    </div>
+                
+                                                    <div class='spacer' style='line-height:10px;height:0px;mso-line-height-rule:exactly;'>&nbsp;</div>
+                
+                                                    <table role='presentation' width='100%'>
+                                                    
+                                                        <tr>
+                                                            <td style='padding:10px;text-align:center;'>
+                                                                <img src='https://dyouthfest.kepeng.io/assets/img/favicon.png' width='320' alt=' style=' width:100%;height:auto;' />
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                        <td style='padding:10px;text-align:center;'>
+                                                        Click this link to change your account password : <a href=" . base_url() . 'forgot_password/create_New?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '>Reset Password</a><p>Or Copy This link to URL<br><p>' . base_url() . 'forgot_password/create_New?email=' . $this->input->post('email') . '&token=' . urlencode($token) . "</p>
+                                                        </td>
+                                                        </tr>
+                                                    </table>
+                
+                                                    <div class='three-col' style='font-size:0;text-align:center;'>
+                                                        <!--[if mso]>
+                                                <table role='presentation' width='100%' style='text-align:center;'>
+                                                    <tr>
+                                                        <td style='width:220px;padding:10px;' valign='top'>
+                                                            <![endif]-->
+                                                        <table role='presentation' width='100%'>
+                                                            <tr>
+                                                                <td style='padding:10px;text-align:center;'>
+                                                                Click this link to change your account password : <a href=" . base_url() . 'forgot_password/create_New?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a><p>Or Copy This link to URL<br><p>' . base_url() . 'forgot_password/create_New?email=' . $this->input->post('email') . '&token=' . urlencode($token) . "</p>';
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                
+                
+                
+                                                        <!--[if mso]>
+                                                        </td>
+                                                        <td style='width:220px;padding:10px;' valign='top'>
+                                                            <![endif]-->
+                
+                
+                
+                
+                
+                                                    </div>
+                
+                                            </td>
+                                        </tr>
+                                    </table>";
+
+
+
 
                 $mail->Body = $mailContent;
 

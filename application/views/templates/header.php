@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title><?= $title; ?></title>
 
     <!-- Bootstrap 4 - CSS -->
@@ -17,11 +18,13 @@
 
 
 
+
+
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="<?= base_url('assets/'); ?>js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/main.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/main.css?revision=2">
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
     <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
     <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />

@@ -1,3 +1,106 @@
+<style>
+    #image-preview {
+        z-index: 1;
+        position: absolute;
+        height: 100px;
+        margin-top: 30px;
+        width: 50%;
+        border: 0;
+        text-decoration: none;
+        outline: none
+    }
+
+    .button {
+        background-color: #008cba;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .button:disabled {
+        opacity: 0.5;
+    }
+
+    .hide {
+        display: none;
+    }
+
+
+    html {
+        box-sizing: border-box;
+        font-family: 'PT Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+
+    body {
+        background-color: #f3f3f3;
+    }
+
+    form {
+        width: 100%;
+        max-width: 700px;
+        margin: 60px auto;
+    }
+
+    form input {
+        font-size: 30px;
+        padding: 0 20px;
+        border: 2px solid #ccc;
+        width: 100%;
+        color: #666;
+        line-height: 3;
+        border-radius: 7px;
+        font-family: 'PT Sans', sans-serif;
+        font-weight: bold;
+    }
+
+    form input:focus {
+        outline: 0;
+    }
+
+    form input.error {
+        border-color: #ff0000;
+    }
+
+    form label.error {
+        background-color: #ff0000;
+        color: #fff;
+        padding: 6px;
+        font-size: 11px;
+    }
+
+    label {
+        color: #999;
+        display: block;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 0.05em
+    }
+
+    form small {
+        color: #888;
+        font-size: 1em;
+        margin-top: 10px;
+        display: block;
+
+    }
+</style>
+
 <body class="bg-light">
 
     <div class="container-fluid bg-light">

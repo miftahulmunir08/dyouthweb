@@ -28,15 +28,17 @@
                     <div class="col-10 col-md-8 col-lg-6 col-xl-4">
                         <div class="card custome__card_profile">
                             <div class="card-body">
+                                <label for="upload_image">
+                                    <?php if ($data_user["photo_profile"] != NULL) { ?>
+                                        <img src="<?= base_url('assets/img/profile/' . $data_user['photo_profile']) ?>" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
+                                    <?php } else { ?>
+                                        <img src="<?= base_url('assets/img/profile/') ?>profile2.png" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
 
-                                <?php if ($data_user["photo_profile"] != NULL) { ?>
-                                    <img src="<?= base_url('Assets/img/profile/' . $data_user['photo_profile']) ?>" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
-                                <?php } else { ?>
-                                    <img src="<?= base_url('Assets/img/profile/') ?>profile.png" id="uploaded_image" class="img-responsive rounded-circle" width="150" />
-                                <?php } ?>
+                                    <?php } ?>
 
-                                <h5><?= $data_user["name"] ?></h5>
-                                <span><?= $data_user["email"] ?></span>
+                                    <h5><?= $data_user["customer_name"] ?></h5>
+                                    <span><?= $data_user["customer_email"] ?></span>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -113,7 +115,7 @@
                                             <div class="title__banner">
                                                 <span class="event__title mb-2">#DOORPRIZEDYOUTH</span>
                                                 <span class="font__vsm">Tukar nota belanjamu di Distro, Coffee Shop,
-                                                    Barbershop di Kota Denpasar.</span>
+                                                    Barbershop,Studio Musik dan Butik di Kota Denpasar.</span>
                                             </div>
                                             <div class="d-block mt-2">
                                                 <a href="<?= base_url('kupon') ?>" class="btn__blue_gradient_banner d-block">Ikuti Undian</a>
@@ -135,11 +137,13 @@
                             ?> -->
                     <div class="col-11 banner__event">
                         <div class="card custome__card__content shadow-sm">
-                            <?php foreach ($data_lomba as $lomba) { ?>
+                            <?php
+                            for ($i = 0; $i < 3; $i++) { ?>
 
 
-                                <div class="card-body mb-3 list__undian">
-                                    <span class="icon__transaksi float-left">
+
+                                <div class="card-body mb-3 list__undian row">
+                                    <div class="icon__transaksi col-xs-6">
                                         <svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.5938 17.3125V18.625" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M10.4688 20.75H16.7188V20.125C16.7188 19.4375 16.1563 18.875 15.4688 18.875H11.7187C11.0312 18.875 10.4688 19.4375 10.4688 20.125V20.75V20.75Z" stroke="#BDBDBD" stroke-miterlimit="10" />
@@ -149,10 +153,10 @@
                                             <path d="M17.5813 14.2813C18.05 14.1313 18.4625 13.8563 18.7875 13.5313C19.35 12.9063 19.725 12.1563 19.725 11.2813C19.725 10.4063 19.0375 9.71875 18.1625 9.71875H17.7563C17.8813 10.0063 17.9438 10.325 17.9438 10.6563V12.5313C17.9438 13.1563 17.8125 13.7438 17.5813 14.2813Z" stroke="#BDBDBD" stroke-linecap="round" stroke-linejoin="round" />
                                             <rect x="0.937302" y="0.5" width="24.5691" height="27" rx="5.5" stroke="#E5E5E5" />
                                         </svg>
-                                    </span>
-                                    <div class="title__undian float-left">
-                                        <h6><?= $lomba["acara"] ?></h6>
-                                        <a href="<?= base_url('lomba/detailomba/' . $lomba["id_lomba"]) ?>">Lihat detail</a>
+                                    </div>
+                                    <div class="title__undian col-xs-6">
+                                        <h6><?= substr($data_lomba[$i]["acara"], 0, 25) . "..." ?></h6>
+                                        <a href="<?= base_url('lomba/detailomba/' . $data_lomba[$i]["id_lomba"]) ?>">Lihat detail</a>
                                     </div>
                                 </div>
 

@@ -10,6 +10,12 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->load->model('Admin_model', "admin");
         $this->load->library('form_validation');
+
+        $role = $this->session->userdata("role");
+        
+        if ($role == NULL) {
+            redirect('4dmin/');
+        }
     }
 
     public function index()

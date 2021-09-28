@@ -70,8 +70,8 @@
                                     <b>Pelaksanaan Lomba</b> : <?= $data_lomba["pelaksanaan_lomba"] ?>
                                 </p>
 
-                                <a href="<?= $data_lomba["link_daftar"] ?>" target="_blank" class="btn__gray_small d-block m-1">Lihat selengkapnya</a>
-                                <a href="<?= $data_lomba["link_lengkap"] ?>" target="_blank" class="btn__blue_gradient_small d-block m-1">Daftar sekarang</a>
+                                <a href="<?= $data_lomba["link_lengkap"] ?>" target="_blank" class="btn__gray_small d-block m-1">Lihat selengkapnya</a>
+                                <a href="<?= $data_lomba["link_daftar"] ?>" target="_blank" class="btn__blue_gradient_small d-block m-1">Daftar sekarang</a>
                             </div>
                         </div>
                     </div>
